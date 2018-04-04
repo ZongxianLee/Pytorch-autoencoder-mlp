@@ -1,8 +1,3 @@
-# coding: utf-8
-
-# In[70]:
-
-
 from __future__ import print_function, division
 import torch
 import numpy as np
@@ -21,9 +16,6 @@ import torch.optim as optim
 current_path = os.getcwd()
 dataset_name = 'mnist'
 file_format = '.pkl'
-
-
-# In[71]:
 
 
 class my_mnist(Dataset):
@@ -51,10 +43,6 @@ class my_mnist(Dataset):
         return sample
         
 
-
-# In[72]:
-
-
 # loding the train, val, test data
 data_path = os.path.join(current_path, dataset_name) + file_format
 train, val, test = data.Get_data(data_path)
@@ -75,8 +63,6 @@ uncomment the follow code if you would like to visualize the input data
 #    if i == 3:
 #        break
 
-
-# In[73]:
 
 
 data_set = {'train': train, 'val':val, 'test':test}
@@ -143,9 +129,6 @@ net_pre = MNIST_Net('classification')
 net_ae = net_ae.cuda()
 net_cls = net_cls.cuda()
 net_pre = net_pre.cuda()
-
-
-# In[75]:
 
 
 #define the loss function and optimizer
@@ -241,8 +224,6 @@ def train(net, criterion, optimizer, scheduler, mode,num_epoches = 100):
         return train_loss_record, val_loss_record, train_acc, val_acc
 
 
-# In[77]:
-
 
 def show_fig(x, y, x_label, y_label, save_name):
     fig = plt.figure()
@@ -254,7 +235,6 @@ def show_fig(x, y, x_label, y_label, save_name):
     plt.show()
 
 
-# In[78]:
 
 
 y = range(1)
@@ -263,8 +243,6 @@ show_fig(train_loss, y, 'num_epoch', 'ae_train_loss', 'autoencoder_train_loss.pn
 show_fig(val_loss, y, 'num_epoch', 'ae_val_loss','autoencoder_train_loss.png')
 print(type(model_param_ae))
 
-
-# In[80]:
 
 
 optimizer_cls = optim.SGD(net_cls.parameters(), lr = 0.001, momentum = 0.9)
@@ -277,7 +255,6 @@ show_fig(train_acc, label_y, 'num_epoch','cls_train_acc', 'classification_train_
 show_fig(val_acc, label_y, 'num_epoch', 'cls_val_acc', 'classification_val_acc.png')
 
 
-# In[81]:
 
 
 net_pre = MNIST_Net("classification")
